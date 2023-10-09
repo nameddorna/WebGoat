@@ -13,7 +13,9 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Gitleaks@2
+  inputs:
+    scanlocation: '$(Build.SourcesDirectory)'
+    configtype: 'predefined'
+    predefinedconfigfile: 'GitleaksUdmCombo.toml'
+    reportformat: 'sarif'
